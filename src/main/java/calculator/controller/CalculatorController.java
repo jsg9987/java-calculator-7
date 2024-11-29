@@ -1,16 +1,20 @@
 package calculator.controller;
 
+import calculator.utils.Parser;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class CalculatorController {
-//    private final SeparatorService separatorService;
     public void run() {
-        getInputStr();
+        String inputStr = getInputStr();
+        String[] numArray = Parser.splitByDelimiter(inputStr);
     }
 
-    private void getInputStr() {
+    private String getInputStr() {
         OutputView.printNumInputPrompt();
-        String inputStr = InputView.getInputString();
+
+        return InputView.getInputString();
     }
+
+
 }
