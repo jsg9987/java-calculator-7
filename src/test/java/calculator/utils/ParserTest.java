@@ -1,10 +1,8 @@
 package calculator.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import calculator.utils.Parser;
 
 public class ParserTest {
 
@@ -16,5 +14,11 @@ public class ParserTest {
         String[] numArray = {"1","2","3","4"};
 
         assertThat(Parser.splitByDelimiter(inputStr)).isEqualTo(numArray);
+    }
+
+    @DisplayName("문자열을 숫자로 바꾸는 기능 테스트")
+    @Test
+    public void toNumArray_GetNumArray_Success() {
+
     }
 }

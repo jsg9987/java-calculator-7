@@ -1,7 +1,7 @@
 package calculator.validator;
 
+import calculator.constants.ErrorCode;
 import calculator.utils.Parser;
-import calculator.view.OutputView;
 
 public class InputValidator {
 
@@ -10,7 +10,13 @@ public class InputValidator {
         try {
             Parser.toNumArray(numArray);
         } catch (NumberFormatException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            throw new NumberFormatException(ErrorCode.NOT_DELIMITER_INPUT.getMessage());
+        }
+    }
+
+    public static void validateNumber(int num) {
+        if (num < 0) {
+            throw new ArithmeticException(ErrorCode.NOT_POSITIVE_NUMBER.getMessage());
         }
     }
 }

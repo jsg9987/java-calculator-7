@@ -1,7 +1,7 @@
 package calculator.utils;
 
-import calculator.constants.ErrorCode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,17 +21,21 @@ public class Parser {
             inputStr = matcher.group(2);
         }
 
-        return inputStr.split(delimiters);
+        return removeSpace(inputStr.split(delimiters));
+    }
+
+    private static String[] removeSpace(String[] nums) {
+        return Arrays.stream(nums)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toArray(String[]::new);
     }
 
     public static List<Integer> toNumArray(String[] strNums) {
         List<Integer> nums = new ArrayList<>();
         for (String str : strNums) {
-            try {
-                nums.add(Integer.parseInt(str));
-            }catch (NumberFormatException e) {
-                throw new NumberFormatException(ErrorCode.NOT_DELIMITER_INPUT.getMessage());
-            }
+            str = str.trim();
+            nums.add(Integer.parseInt(str));
         }
 
         return nums;
