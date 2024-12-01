@@ -1,5 +1,8 @@
 package calculator.utils;
 
+import calculator.constants.ErrorCode;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,5 +22,18 @@ public class Parser {
         }
 
         return inputStr.split(delimiters);
+    }
+
+    public static List<Integer> toNumArray(String[] strNums) {
+        List<Integer> nums = new ArrayList<>();
+        for (String str : strNums) {
+            try {
+                nums.add(Integer.parseInt(str));
+            }catch (NumberFormatException e) {
+                throw new NumberFormatException(ErrorCode.NOT_DELIMITER_INPUT.getMessage());
+            }
+        }
+
+        return nums;
     }
 }
