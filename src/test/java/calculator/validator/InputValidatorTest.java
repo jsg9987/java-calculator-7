@@ -35,7 +35,7 @@ public class InputValidatorTest {
         // when, then
         assertThatCode(() -> InputValidator.validateNumber(num))
                 .hasMessage("음수를 입력할 수 없습니다.")
-                .isInstanceOf(ArithmeticException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

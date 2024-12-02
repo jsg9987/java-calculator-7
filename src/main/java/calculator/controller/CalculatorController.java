@@ -19,6 +19,7 @@ public class CalculatorController {
         List<Integer> nums = parseInputToInt(inputStr);
         validateNumber(nums);
         int result = calculate(nums);
+        OutputView.printCalculateResult(result);
     }
 
     private String getInputStr() {
@@ -39,12 +40,8 @@ public class CalculatorController {
     }
 
     private void validateNumber(List<Integer> nums) {
-        try {
-            for (int num : nums) {
-                InputValidator.validateNumber(num);
-            }
-        } catch (ArithmeticException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        for (int num : nums) {
+            InputValidator.validateNumber(num);
         }
     }
 

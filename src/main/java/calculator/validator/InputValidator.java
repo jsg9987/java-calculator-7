@@ -2,6 +2,7 @@ package calculator.validator;
 
 import calculator.constants.ErrorCode;
 import calculator.utils.Parser;
+import calculator.view.OutputView;
 
 public class InputValidator {
 
@@ -16,7 +17,8 @@ public class InputValidator {
 
     public static void validateNumber(int num) {
         if (num < 0) {
-            throw new ArithmeticException(ErrorCode.NOT_POSITIVE_NUMBER.getMessage());
+            OutputView.printErrorMessage(ErrorCode.NOT_POSITIVE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.NOT_POSITIVE_NUMBER.getMessage());
         }
     }
 }
