@@ -1,5 +1,6 @@
 package calculator.controller;
 
+import calculator.service.CalculateService;
 import calculator.utils.Parser;
 import calculator.validator.InputValidator;
 import calculator.view.InputView;
@@ -7,10 +8,17 @@ import calculator.view.OutputView;
 import java.util.List;
 
 public class CalculatorController {
+    private final CalculateService calculateService;
+
+    public CalculatorController() {
+        this.calculateService = new CalculateService();
+    }
+
     public void run() {
         String inputStr = getInputStr();
         List<Integer> nums = parseInputToInt(inputStr);
         validateNumber(nums);
+        int result = calculate(nums);
     }
 
     private String getInputStr() {
@@ -38,6 +46,10 @@ public class CalculatorController {
         } catch (ArithmeticException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private int calculate(List<Integer> nums) {
+        return calculateService.calculate(nums);
     }
 
 }
